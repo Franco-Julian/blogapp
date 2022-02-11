@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="8dp"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_margin="8dp">
+        android:layout_marginBottom="8dp"
+        android:gravity="center">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_picture"
@@ -28,7 +30,7 @@
             tools:text="Julián Franco"/>
 
         <TextView
-            android:id="@+id/post_timestampo"
+            android:id="@+id/post_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Hace 2 horas"/>
@@ -41,7 +43,14 @@
         android:layout_height="250dp"
         tools:background="@mipmap/ic_launcher"/>
 
-
-
+    <TextView
+        android:id="@+id/post_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Photo Description"
+        android:layout_marginTop="8dp"
+        android:maxLines="4"
+        android:ellipsize="end"
+        />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
