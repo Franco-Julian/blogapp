@@ -9,4 +9,6 @@
     <string name="Username" />
     <string name="sign_up" />
     <string name="confirm_password">Confirm password</string>
+    <string name="camera_fragment">Camera Fragment</string>
+    <string name="profile_fragment">Profile Fragment</string>
 </resources>
