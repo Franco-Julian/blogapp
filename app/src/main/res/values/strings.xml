@@ -11,4 +11,7 @@
     <string name="confirm_password">Confirm password</string>
     <string name="camera_fragment">Camera Fragment</string>
     <string name="profile_fragment">Profile Fragment</string>
+    <string name="username">Username</string>
+    <string name="create_profile">Create profile</string>
+    <string name="photo_description">Photo description</string>
 </resources>
