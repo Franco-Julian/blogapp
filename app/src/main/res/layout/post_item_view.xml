@@ -43,6 +43,28 @@
         android:layout_height="250dp"
         tools:background="@mipmap/ic_launcher"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/like_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_baseline_favorite_24"/>
+        <TextView
+            android:id="@+id/like_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="5 Likes"/>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/post_description"
         android:layout_width="match_parent"

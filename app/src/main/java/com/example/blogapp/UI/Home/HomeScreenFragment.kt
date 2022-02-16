@@ -14,9 +14,13 @@ import com.example.blogapp.R
 import com.example.blogapp.UI.Home.Adapter.HomeScreenAdapter
 import com.example.blogapp.databinding.FragmentHomeScreenBinding
 import com.example.blogapp.Core.Result
+import com.example.blogapp.Core.hide
+import com.example.blogapp.Core.show
+import com.example.blogapp.Data.Model.Post
+import com.example.blogapp.UI.Home.Adapter.OnPostClickListener
 
 
-class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
+class HomeScreenFragment : Fragment(R.layout.fragment_home_screen), OnPostClickListener {
 
     private lateinit var binding: FragmentHomeScreenBinding
     private val viewModel by viewModels<HomeScreenViewModel> {
@@ -34,14 +38,20 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
         viewModel.fetchLatestPost().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                 }
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.rvHome.adapter = HomeScreenAdapter(result.data)
+                    binding.progressBar.hide()
+                    if(result.data.isEmpty()){
+                        binding.emptyContainer.show()
+                        return@Observer
+                    }else{
+                        binding.emptyContainer.hide()
+                    }
+                    binding.rvHome.adapter = HomeScreenAdapter(result.data, this)
                 }
                 is Result.Failure -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     Toast.makeText(
                         requireContext(),
                         "Ocurrio un error: ${result.exception}",
@@ -51,5 +61,23 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
             }
 
         })
+    }
+
+    override fun onLikeButtonClick(post: Post, liked: Boolean) {
+        viewModel.registerLikeButtonState(postId = post.id, liked).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                }
+                is Result.Success -> {
+                }
+                is Result.Failure -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Ocurrio un error: ${result.exception}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 }
